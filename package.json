@@ -1,11 +1,11 @@
 {
-	"name": "main",
+	"name": "smartpen-ide",
 	"private": true,
 	"version": "0.0.1",
 	"type": "module",
 	"scripts": {
-		"dev": "vite dev",
-		"build": "vite build && cp run.ts build/run.ts",
+		"dev": "NODE_ENV=development PUBLIC_WEBUI_URL=http://localhost:5100/ bun run start.ts",
+		"build": "vite build",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
