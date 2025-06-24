@@ -5,7 +5,7 @@
 	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
-		"build": "vite build",
+		"build": "vite build && cp run.ts build/run.ts",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
@@ -21,6 +21,7 @@
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/vite": "^4.0.0",
+		"@types/bun": "^1.2.17",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^10.0.1",
 		"eslint-plugin-svelte": "^3.0.0",
@@ -35,5 +36,8 @@
 		"typescript-eslint": "^8.20.0",
 		"vite": "^6.2.6",
 		"vite-plugin-devtools-json": "^0.2.0"
+	},
+	"dependencies": {
+		"@webui-dev/bun-webui": "^2.5.2"
 	}
 }
