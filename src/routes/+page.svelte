@@ -1,13 +1,58 @@
 <script lang="ts">
+	import { project } from '$lib/state.svelte';
+	import CardSidebar from '$lib/ui/CardSidebar.svelte';
+
+	let graphicFileInput: HTMLInputElement;
 </script>
 
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<div class="flex h-dvh w-dvw">
+	<div class="relative h-screen max-w-full grow overflow-auto">
+		<div class="absolute top-4 left-4 flex gap-2">
+			<button type="button" class="btn btn-neutral btn-sm">Seite 1</button>
+			<button type="button" class="btn btn-neutral btn-sm">Seite 2</button>
+			<button type="button" class="btn btn-neutral btn-sm">Seite 3</button>
+			<button type="button" class="btn btn-neutral btn-sm">Seite 4</button>
+		</div>
+		{#each project.graphics as file, index (index)}
+			<img src={file.objectURL} alt="Grafik" class="block h-auto max-h-none w-auto max-w-none" />
+		{/each}
+	</div>
+	<div class="bg-base-200 flex w-96 shrink-0 flex-col gap-4 p-4">
+		<div class="grow">
+			<CardSidebar>
+				<h3 class="text-xs font-bold tracking-wider">Eigenschaften</h3>
+			</CardSidebar>
+		</div>
+		<CardSidebar>
+			<h3 class="text-xs font-bold tracking-wider">Codes</h3>
+		</CardSidebar>
+		<CardSidebar>
+			<h3 class="mb-4 text-xs font-bold tracking-wider">Grafiken</h3>
 
-<button
-	type="button"
-	onclick={async () => {
-		const answer = await webui.call('helloWorld', 'hello');
-		console.log(answer);
-	}}>Hello World</button
->
+			<div class="mb-4 flex flex-col-reverse">
+				{#each project.graphics as item (item.name)}
+					<div class="rounded-md bg-white/3 px-2 py-1 text-end">{item.name}</div>
+				{/each}
+			</div>
+			<button type="button" class="btn btn-sm w-full" onclick={() => graphicFileInput.click()}>
+				<span class="i-[mdi--plus]"></span>
+				Laden
+			</button>
+			<input
+				type="file"
+				class="pointer-events-none invisible fixed h-0 w-0"
+				bind:this={graphicFileInput}
+				accept=".jpg,.jpeg,.png"
+				oninput={(event) => {
+					for (const file of event.currentTarget.files ?? []) {
+						project.graphics.push({
+							name: file.name,
+							file,
+							objectURL: URL.createObjectURL(file),
+						});
+					}
+				}}
+			/>
+		</CardSidebar>
+	</div>
+</div>
