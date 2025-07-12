@@ -1,7 +1,24 @@
-import type { Project } from './types/project';
+export type Project = {
+	pages: {
+		name: string;
+		graphics: {
+			name: string;
+			file: File;
+			objectURL: string;
+			x: number;
+			y: number;
+			id: string;
+		}[];
+	}[];
+};
 
 export const project: Project = $state({
-	graphics: [],
+	pages: [
+		{
+			name: 'Page 1',
+			graphics: [],
+		},
+	],
 });
 
 export const ui: Record<string, any> = $state({
