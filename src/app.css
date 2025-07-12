@@ -1,6 +1,4 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/forms';
 @plugin "daisyui";
-@plugin "@iconify/tailwind4" {
-	prefix: 'i';
-}
+@plugin "@iconify/tailwind4";

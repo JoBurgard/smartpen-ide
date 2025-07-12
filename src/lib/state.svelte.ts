@@ -1,7 +1,13 @@
 export type Project = {
 	pages: {
 		name: string;
-		graphics: {
+		background: {
+			name: string;
+			file: File;
+			objectURL: string;
+			id: string;
+		};
+		codes: {
 			name: string;
 			file: File;
 			objectURL: string;
