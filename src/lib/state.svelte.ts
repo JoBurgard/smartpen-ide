@@ -1,28 +1,30 @@
 export type Project = {
+	version: number;
+	name: string;
 	pages: {
 		name: string;
-		background: {
+		background?: {
+			id: string;
 			name: string;
 			file: File;
 			objectURL: string;
-			id: string;
 		};
 		codes: {
+			oid: number;
 			name: string;
-			file: File;
-			objectURL: string;
 			x: number;
 			y: number;
-			id: string;
 		}[];
 	}[];
 };
 
 export const project: Project = $state({
+	version: 1,
+	name: 'Smartpen Project',
 	pages: [
 		{
 			name: 'Page 1',
-			graphics: [],
+			codes: [],
 		},
 	],
 });
